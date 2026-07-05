@@ -926,7 +926,7 @@ dependencies = [
 [[package]]
 name = "rltbl_db"
 version = "0.1.0"
-source = "git+https://github.com/rltbl/rltbl_db?branch=main#9d3194dcb0fdb60694ad02d5ee1b968c3d4b5ceb"
+source = "git+https://github.com/rltbl/rltbl_db?branch=test-macros#7b01a6370f125b1e2f3e4ac738ed44beea648530"
 dependencies = [
  "async-trait",
  "bytes",
@@ -946,13 +946,6 @@ dependencies = [
 
 [[package]]
 name = "rltbl_db_row"
-version = "0.1.0"
-dependencies = [
- "rltbl_db",
-]
-
-[[package]]
-name = "rltbl_db_row_derive"
 version = "0.1.0"
 dependencies = [
  "quote",
@@ -1165,10 +1158,11 @@ checksum = "55937e1799185b12863d447f42597ed69d9928686b8d88a1df17376a097d8369"
 name = "test-macros"
 version = "0.1.0"
 dependencies = [
+ "indexmap",
  "rltbl_db",
  "rltbl_db_row",
- "rltbl_db_row_derive",
  "serde",
+ "serde_json",
 ]
 
 [[package]]

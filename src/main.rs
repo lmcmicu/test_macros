@@ -1,24 +1,31 @@
-use rltbl_db::db_value::DbRow;
+use rltbl_db::{
+    db_row,
+    db_value::{DbRow, DbValue, JsonValue},
+};
 use rltbl_db_row::ConvertDbRow;
-use rltbl_db_row_derive::ConvertDbRow;
 use serde::{Deserialize, Serialize};
+use serde_json::json;
 
-#[derive(Clone, Debug, Default, Serialize, Deserialize, ConvertDbRow)]
+type Custom = String;
+
+#[derive(Clone, Debug, Default, Serialize, Deserialize, ConvertDbRow, PartialEq)]
 struct MyStruct {
-    _alpha: usize,
-    _beta: String,
+    alpha: usize,
+    beta: Custom,
+    gamma: JsonValue,
 }
 
 fn main() {
-    let mystruct = MyStruct {
-        _alpha: 1,
-        _beta: "foo".to_string(),
+    let expected_mystruct = MyStruct {
+        alpha: 1,
+        beta: "foo".to_string(),
+        gamma: json!(1),
     };
-    let row = mystruct.into_db_row();
-    let mystruct = MyStruct::from_db_row(row);
-    println!("MYSTRUCT 1: {mystruct:?}");
+    let expected_db_row =
+        db_row! { "alpha" => 1_i64, "beta" => "foo", "gamma" => DbValue::Json(json!(1)) };
 
-    let row: DbRow = mystruct.into();
+    let row: DbRow = expected_mystruct.clone().into();
+    assert_eq!(expected_db_row, row);
     let mystruct = MyStruct::from(row);
-    println!("MYSTRUCT 2: {mystruct:?}");
+    assert_eq!(expected_mystruct, mystruct);
 }
