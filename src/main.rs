@@ -1,6 +1,6 @@
 use rltbl_db::{
     db_row,
-    db_value::{DbRow, DbValue, JsonValue},
+    db_value::{DbRow, DbValue},
 };
 use rltbl_db_row::ConvertDbRow;
 use serde::{Deserialize, Serialize};
@@ -12,7 +12,8 @@ type Custom = String;
 struct MyStruct {
     alpha: usize,
     beta: Custom,
-    gamma: JsonValue,
+    #[json_value]
+    gamma: serde_json::Value,
 }
 
 fn main() {
