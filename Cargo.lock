@@ -947,6 +947,7 @@ dependencies = [
 [[package]]
 name = "rltbl_db_row"
 version = "0.1.0"
+source = "git+https://github.com/lmcmicu/rltbl_db_row?branch=main#213b540823c4a77ac38de705d7f038a56b67092f"
 dependencies = [
  "quote",
  "rltbl_db",

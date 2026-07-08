@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-rltbl_db_row = { path = "../rltbl_db_row" }
+rltbl_db_row = { git = "https://github.com/lmcmicu/rltbl_db_row", branch = "main" }
 rltbl_db = { git = "https://github.com/rltbl/rltbl_db", branch = "main" }
 serde = { version = "1.0.226", features = ["derive"] }
 indexmap = "2.14.0"
